@@ -52,6 +52,24 @@ router.post('/product', (req, res, next) => {
 });
 ```
 
+### 6. 404 Error Handler
+- Creating a catch-all route for undefined paths
+- Must be registered **last** after all other routes
+- Returns 404 status code when no routes match
+
+**Code example:**
+```javascript
+// Registered last - catches all unmatched routes
+app.use('/', (req, res, next) => {
+  res.status(404).send('<h1>Page not found</h1>');
+});
+```
+
+**Note about unused parameters:**
+- TypeScript may warn about unused `req` and `next` parameters (warnings 6133)
+- These parameters can be omitted if not needed: `app.use('/', (req, res) => {...})`
+- Or use underscore prefix to indicate intentionally unused: `(_, res, _next)`
+
 ---
 
 ## What Was Difficult

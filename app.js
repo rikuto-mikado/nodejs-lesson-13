@@ -21,5 +21,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(adminRoutes);
 app.use(shopRoutes);
 
+// 404 Error Handler - Catch-all route for undefined paths
+// This middleware is registered last and catches any requests that didn't match the above routes
+// Returns a 404 status code with a "Page not found" message
+app.use('/', (req, res, next) => {
+    res.status(404).send('<h1>Page not found</h1>');
+});
+
 // Start server on port 3000
 app.listen(3000);
